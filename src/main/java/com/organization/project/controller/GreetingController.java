@@ -1,5 +1,6 @@
 package com.organization.project.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -9,30 +10,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.organization.project.model.GenericResponse;
 import com.organization.project.model.Greeting;
 
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
 
-	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
-	private HashMap<String, Object> mapOut;
+	private GenericResponse genericResponse;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/coba")
-	public HashMap<String, Object> greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
-		mapOut = new HashMap<>();
-		Greeting greeting = new Greeting(counter.incrementAndGet(), String.format(template, name));
-		mapOut.put("failed", false);
-		mapOut.put("result", greeting);
-		return mapOut;
+	@RequestMapping(method = RequestMethod.GET, value = "/getname")
+	public GenericResponse greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
+		genericResponse = new GenericResponse();
+		Greeting greeting = new Greeting(counter.incrementAndGet(), String.format("Hello, %s!", name));
+		genericResponse.setFailed(false);
+		genericResponse.setResult(greeting);
+		genericResponse.setDate(new Date());
+		genericResponse.setPath("/coba");
+		genericResponse.setMessage("success");
+		return genericResponse;
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public HashMap<?, ?> halo(@RequestBody HashMap<?, ?> coba) {
-		mapOut = new HashMap<>();
-		mapOut.put("failed", false);
-		mapOut.put("result", coba);
-		return mapOut;
+	public GenericResponse halo(@RequestBody HashMap<?, ?> coba) {
+		genericResponse = new GenericResponse();
+		genericResponse.setFailed(false);
+		genericResponse.setResult(coba);
+		genericResponse.setDate(new Date());
+		genericResponse.setPath("/coba");
+		genericResponse.setMessage("success");
+		return genericResponse;
 	}
 }
