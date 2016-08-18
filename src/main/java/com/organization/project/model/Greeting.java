@@ -1,4 +1,4 @@
-package com.organization.project.pojo;
+package com.organization.project.model;
 
 public class Greeting {
 
