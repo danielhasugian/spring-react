@@ -1,7 +1,6 @@
 package com.organization.project.controller;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +18,7 @@ public class GreetingController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 	private HashMap<String, Object> mapOut;
-
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/coba")
 	public HashMap<String, Object> greeting(@RequestParam(value = "name", defaultValue = "world") String name) {
 		mapOut = new HashMap<>();
@@ -28,7 +27,7 @@ public class GreetingController {
 		mapOut.put("result", greeting);
 		return mapOut;
 	}
-
+	
 	@RequestMapping(method = RequestMethod.PUT)
 	public HashMap<?, ?> halo(@RequestBody HashMap<?, ?> coba) {
 		mapOut = new HashMap<>();
