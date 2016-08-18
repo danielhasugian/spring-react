@@ -1,7 +1,9 @@
 # spring-react
 
 **Run spring boot**
-mvn : clean install <Enter>
-mvn : spring-boot:run 
-
-open : localhost:8080
+<dl>
+<dt>Build</dt>
+<dd>mvn : clean install</dd>
+<dt>Run</dt>
+<dd>mvn : spring-boot:run </dd>
+</dl>
