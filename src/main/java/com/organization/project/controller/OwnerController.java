@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.organization.project.domain.Owner;
+import com.organization.project.domain.cassandra.Owner;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.repository.OwnerRepository;
 

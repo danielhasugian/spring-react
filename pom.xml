@@ -7,7 +7,6 @@
 	<packaging>war</packaging>
 	<properties>
 		<java.version>1.8</java.version>
-		<postgresql.version>9.4-1200-jdbc4</postgresql.version>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -43,7 +42,6 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
 		</dependency>
 
 		<dependency>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.organization.project.domain.User;
+import com.organization.project.domain.postgresql.User;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.repository.UserRepository;
 

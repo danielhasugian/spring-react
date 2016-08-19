@@ -1,4 +1,4 @@
-package com.organization.project.domain;
+package com.organization.project.domain.cassandra;
 
 import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKey;

@@ -1,4 +1,4 @@
-package com.organization.project.domain;
+package com.organization.project.domain.postgresql;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
