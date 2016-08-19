@@ -15,7 +15,7 @@ import com.organization.project.model.Greeting;
 
 @RestController
 @RequestMapping("/greeting")
-public class GreetingController {
+public class GreetingController extends RootController{
 
 	private final AtomicLong counter = new AtomicLong();
 	private GenericResponse genericResponse;

@@ -15,7 +15,7 @@ import com.organization.project.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends RootController {
 	private GenericResponse genericResponse;
 
 	@Autowired

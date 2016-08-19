@@ -23,7 +23,7 @@ import com.organization.project.repository.OwnerRepository;
  */
 @RestController
 @RequestMapping("/owner")
-public class OwnerController {
+public class OwnerController extends RootController {
 
 	@Autowired
 	private OwnerRepository ownerRepo;
