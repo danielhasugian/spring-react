@@ -8,10 +8,11 @@
 <dd>mvn : spring-boot:run </dd>
 <dt>Prepare database Cassandra</dt>
 <dd> use : cassandra version2.7 </dd>
-<dd> cqlsh> CREATE KEYSPACE tes WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
-<dd> cqlsh> CREATE TABLE owner (
+<dd> cqlsh> CREATE KEYSPACE [databaseName] WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+<dd> cqlsh> use [databaseName];
+<dd> cqlsh> CREATE TABLE [tableName] (
   id int PRIMARY KEY,
   age int,
-  name text,
+  name text
 );</dd>
 </dl>
