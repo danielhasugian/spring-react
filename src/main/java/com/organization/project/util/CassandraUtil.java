@@ -30,7 +30,6 @@ public class CassandraUtil {
 	private Environment enviroment;
 
 	public CassandraUtil() {
-		System.out.println("CassandraUtil()");
 	}
 
 	/**
@@ -39,7 +38,6 @@ public class CassandraUtil {
 	 * @return {@link String}
 	 */
 	private String getKeySpaceName() {
-		System.out.println(enviroment.getProperty(KEYSPACE));
 		return enviroment.getProperty(KEYSPACE);
 	}
 
@@ -49,7 +47,6 @@ public class CassandraUtil {
 	 * @return {@link String}
 	 */
 	private String getContactPoints() {
-		System.out.println(enviroment.getProperty(CONTACTPOINTS));
 		return enviroment.getProperty(CONTACTPOINTS);
 	}
 
@@ -59,7 +56,6 @@ public class CassandraUtil {
 	 * @return {@link Int}
 	 */
 	private int getPortNumber() {
-		System.out.println(enviroment.getProperty(PORT));
 		return Integer.parseInt(enviroment.getProperty(PORT));
 	}
 
