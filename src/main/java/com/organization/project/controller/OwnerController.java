@@ -27,8 +27,6 @@ public class OwnerController extends RootController {
 	@Autowired
 	private OwnerRepository ownerRepo;
 
-	private GenericResponse genericResponse;
-
 	private List<Owner> owners;
 	private Owner owner;
 	private Boolean status;
