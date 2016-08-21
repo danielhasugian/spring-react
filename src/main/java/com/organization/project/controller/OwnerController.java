@@ -1,7 +1,5 @@
 package com.organization.project.controller;
 
-import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.organization.project.domain.cassandra.Owner;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.repository.OwnerRepository;
+import com.organization.project.util.ConvertUtil;
 
 /**
  * Method to response request to /owner
@@ -43,7 +42,7 @@ public class OwnerController extends RootController {
 	public GenericResponse GetAllOwner() {
 		genericResponse = new GenericResponse();
 		Iterable<Owner> iteratorOwners = ownerRepo.findAll();
-		owners = IterabletoList(iteratorOwners);
+		owners = ConvertUtil.IterabletoList(iteratorOwners);
 		genericResponse.setMessage("success");
 		if (owners.isEmpty() || owners.equals(null)) {
 			genericResponse.setMessage("data is empty");
@@ -153,23 +152,6 @@ public class OwnerController extends RootController {
 		return genericResponse;
 	}
 
-	/**
-	 * method to change iterable to list
-	 * 
-	 * @param iterable
-	 * @return {@link List}
-	 */
-	public static <E> List<E> IterabletoList(Iterable<E> iterable) {
-		if (iterable instanceof List) {
-			return (List<E>) iterable;
-		}
-		ArrayList<E> list = new ArrayList<E>();
-		if (iterable != null) {
-			for (E e : iterable) {
-				list.add(e);
-			}
-		}
-		return list;
-	}
+
 
 }
