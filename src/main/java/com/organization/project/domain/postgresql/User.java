@@ -16,13 +16,13 @@ public class User {
 	private Long id;
 	
 	@Column
-	private String userName;
+	private String username;
 	
 	@Column
 	private String password;
 	
 	@Column
-	private String Division;
+	private String division;
 	
 	@Column
 	private String token;
@@ -33,11 +33,11 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -45,11 +45,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getDivision() {
-		return Division;
+		return division;
 	}
 	public void setDivision(String division) {
-		Division = division;
+		this.division = division;
 	}
 	public String getToken() {
 		return token;

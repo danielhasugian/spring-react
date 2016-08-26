@@ -8,4 +8,6 @@ import com.organization.project.domain.postgresql.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
+
+	 User findByUsername(String userName);
 }

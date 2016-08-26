@@ -17,15 +17,22 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private AuthSuccessHandler authenticationSuccessHandler;
 
+	private String[] pagePermit = {"/", "/greeting/**", "/login/", "/user/**", "/owner/**"};
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-		builder.inMemoryAuthentication().withUser("user").password("user").roles("USER").and().withUser("admin")
-				.password("admin").roles("ADMINdd");
+		builder.inMemoryAuthentication()
+			.withUser("user")
+			.password("user")
+			.roles("USER").and()
+			.withUser("admin")
+			.password("admin")
+			.roles("ADMINdd");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/greeting/**", "/user/**", "/owner/**").permitAll().anyRequest()
+		http.authorizeRequests().antMatchers(pagePermit).permitAll().anyRequest()
 				.authenticated();
 		http.csrf().disable();
 		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
