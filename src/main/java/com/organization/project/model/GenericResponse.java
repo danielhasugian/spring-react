@@ -2,6 +2,7 @@ package com.organization.project.model;
 
 import java.util.Date;
 
+
 public class GenericResponse {
 
 	private Date date;

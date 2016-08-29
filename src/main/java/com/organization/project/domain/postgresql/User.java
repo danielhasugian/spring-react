@@ -1,10 +1,16 @@
 package com.organization.project.domain.postgresql;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +32,13 @@ public class User {
 	
 	@Column
 	private String token;
+	
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "t_user_authority",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    private List<Authority> authorities;
 	
 	public Long getId() {
 		return id;
@@ -57,6 +70,12 @@ public class User {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public List<Authority> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
 	}
 	
 }
