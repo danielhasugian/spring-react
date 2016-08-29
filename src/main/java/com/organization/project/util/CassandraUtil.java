@@ -19,7 +19,7 @@ import org.springframework.data.cassandra.mapping.CassandraMappingContext;
  * class to configure cassandra
  */
 @Configuration
-@PropertySource(value = { "classpath:cassandra.properties" })
+@PropertySource(value = { "classpath:cassandra.properties " })
 public class CassandraUtil {
 
 	private static final String KEYSPACE = "cassandra.keyspace";

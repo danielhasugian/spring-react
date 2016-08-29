@@ -22,7 +22,7 @@ import com.organization.project.util.ConvertUtil;
  */
 @RestController
 @RequestMapping("/owner")
-public class OwnerController extends RootController {
+public class OwnerController extends BaseController {
 
 	@Autowired
 	private OwnerRepository ownerRepo;

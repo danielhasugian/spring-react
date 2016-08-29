@@ -2,6 +2,8 @@ package com.organization.project.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import com.organization.project.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends RootController {
+public class UserController extends BaseController {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -22,21 +24,21 @@ public class UserController extends RootController {
 	private User user;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
-	public GenericResponse getUser() {
-		return sendResponse(Boolean.FALSE, null, userRepository.findAll());
+	public GenericResponse getUser(HttpServletRequest request) {
+		return sendResponse(Boolean.FALSE, null, userRepository.findAll(), request);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/save")
-	public GenericResponse saveUser(@RequestBody HashMap<?, ?> jsonUser) {
+	public GenericResponse saveUser(@RequestBody HashMap<?, ?> jsonUser, HttpServletRequest request) {
 		user = new User();
 		user.setUsername((String) jsonUser.get("username"));
 		user.setPassword((String) jsonUser.get("password"));
 		user.setDivision((String) jsonUser.get("division"));
 		try {
 			userRepository.save(user);
-			return sendResponse(Boolean.FALSE, "Save success", userRepository.findAll());
+			return sendResponse(Boolean.FALSE, "Save success", userRepository.findAll(), request);
 		} catch (Exception e) {
-			return sendResponse(Boolean.TRUE, e.getMessage(), null);
+			return sendResponse(Boolean.TRUE, e.getMessage(), null, request);
 		}
 	}
 
