@@ -12,3 +12,7 @@ spring:
 #server config
 server:
   port : 100
+
+#log-back
+logging:
+  config : classpath:config/logback.xml
