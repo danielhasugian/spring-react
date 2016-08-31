@@ -26,7 +26,7 @@ public class UserController extends CommonController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public GenericResponse getUser(HttpServletRequest request) {
-		return sendResponseSuccess(userRepository.findAll(), request);
+		return sendResponseSuccess(userRepository.findAll(), request.getRequestURI());
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/save")
@@ -37,9 +37,9 @@ public class UserController extends CommonController {
 		user.setDivision((String) jsonUser.get("division"));
 		try {
 			userRepository.save(user);
-			return sendResponseSuccess(userRepository.findAll(), request);
+			return sendResponseSuccess(userRepository.findAll(), request.getRequestURI());
 		} catch (Exception e) {
-			return sendResponseSuccess(null, request);
+			return sendResponseSuccess(null, request.getRequestURI());
 		}
 	}
 

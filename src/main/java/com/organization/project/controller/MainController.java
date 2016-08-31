@@ -1,5 +1,7 @@
 package com.organization.project.controller;
 
+import java.util.Locale;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +12,9 @@ import com.organization.project.common.CommonController;
 public class MainController extends CommonController {
 
 	@RequestMapping({"","/"})
-	public String index(Model model) {
-		model.addAttribute("appTitle", getPropertiesValue("application.title"));
-		model.addAttribute("appContent", getPropertiesValue("application.content"));
+	public String index(Model model, Locale local) {
+		model.addAttribute("appTitle", getMessageValue("app.title", null, local));
+		model.addAttribute("appContent", getMessageValue("app.content", null, local));
 		return "index";
 	}
 

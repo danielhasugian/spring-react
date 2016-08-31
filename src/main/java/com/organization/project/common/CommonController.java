@@ -1,11 +1,11 @@
 package com.organization.project.common;
 
 import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
@@ -15,34 +15,49 @@ import com.organization.project.model.GenericResponse;
 public class CommonController {
 	
 	final static Logger LOGGER = Logger.getLogger(CommonController.class);
-		
+	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@Autowired
 	private Environment environment;
 	
 	protected GenericResponse genericResponse;
 
-	protected String getPropertiesValue(String propertiesName) {
-		return environment.getProperty(propertiesName);
+	protected String getPropertiesValue(String propertiesCode) {
+		return environment.getProperty(propertiesCode);
 	}
 	
-	protected GenericResponse sendResponseSuccess(Object result, HttpServletRequest request){
-		return sendResponse(Boolean.FALSE, "Success", result, request);
+	protected String getMessageValue(String messageCode) {
+		return getMessageValue(messageCode, null, Locale.ENGLISH);
 	}
 	
-	protected GenericResponse sendResponseSuccess(Object result,String message, HttpServletRequest request){
-		return sendResponse(Boolean.FALSE, message, result, request);
+	protected String getMessageValue(String messageCode, Locale locale) {
+		return getMessageValue(messageCode, null, locale);
 	}
 	
-	protected GenericResponse sendResponseFailed(Object result, HttpServletRequest request){
-		return sendResponse(Boolean.TRUE, "Failed", result, request);
+	protected String getMessageValue(String messageCode, String[] params, Locale locale) {
+		return messageSource.getMessage(messageCode, params, locale);
 	}
 	
-	protected GenericResponse sendResponseFailed(Object result, String message, HttpServletRequest request){
-		return sendResponse(Boolean.TRUE, message, result, request);
+	protected GenericResponse sendResponseSuccess(Object result, String path){
+		return sendResponse(Boolean.FALSE, "Success", result, path);
 	}
 	
-	private GenericResponse sendResponse(Boolean failed, String message, Object result, HttpServletRequest request){
-		return new GenericResponse(new Date(), failed, message, result, request.getRequestURI());
+	protected GenericResponse sendResponseSuccess(Object result,String message, String path){
+		return sendResponse(Boolean.FALSE, message, result, path);
+	}
+	
+	protected GenericResponse sendResponseFailed(Object result, String path){
+		return sendResponse(Boolean.TRUE, "Failed", result, path);
+	}
+	
+	protected GenericResponse sendResponseFailed(Object result, String message, String path){
+		return sendResponse(Boolean.TRUE, message, result, path);
+	}
+	
+	private GenericResponse sendResponse(Boolean failed, String message, Object result, String path){
+		return new GenericResponse(new Date(), failed, message, result, path);
 	}
 	
 }

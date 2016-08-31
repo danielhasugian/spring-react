@@ -1,8 +1,16 @@
 package com.organization.project.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Greeting {
 
+	@NotNull(message = "tidak boleh null")
 	private long id;
+	
+	@NotNull(message = "tidak boleh null")
+	@NotBlank(message = "tidak boleh kosong")
 	private String content;
 
 	public Greeting() {

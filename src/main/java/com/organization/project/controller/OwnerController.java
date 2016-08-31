@@ -45,7 +45,7 @@ public class OwnerController extends CommonController {
 		if (owners.isEmpty() || owners.equals(null)) {
 			throw new NullPointerException("Owner empty");
 		}
-		return sendResponseSuccess(owners, request);
+		return sendResponseSuccess(owners, request.getRequestURI());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class OwnerController extends CommonController {
 		if (owner.equals(null)) {
 			throw new NullPointerException("Owner null");
 		}
-		return sendResponseSuccess(owner, request);
+		return sendResponseSuccess(owner, request.getRequestURI());
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class OwnerController extends CommonController {
 		if (owner.equals(null)) {
 			throw new NullPointerException("Owner null");
 		}
-		return sendResponseSuccess(owner, request);
+		return sendResponseSuccess(owner, request.getRequestURI());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class OwnerController extends CommonController {
 		}
 
 		ownerRepo.save(owner);
-		return sendResponseSuccess(owner, request);
+		return sendResponseSuccess(owner, request.getRequestURI());
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class OwnerController extends CommonController {
 		if (status) {
 			ownerRepo.delete(owner.getId());
 		}
-		return sendResponseSuccess(owner, request);
+		return sendResponseSuccess(owner, request.getRequestURI());
 	}
 
 

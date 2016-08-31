@@ -43,13 +43,13 @@ public class LoginController extends CommonController {
 						.signWith(SignatureAlgorithm.HS256, "secretkey")
 						.compact();
 				
-				return sendResponseSuccess(token, request);
+				return sendResponseSuccess(token, request.getRequestURI());
 			}else{
-				return sendResponseSuccess(null, request);
+				return sendResponseSuccess(null, request.getRequestURI());
 			}
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
-			return sendResponseSuccess(null, request);
+			return sendResponseSuccess(null, request.getRequestURI());
 		}
 	}
 

@@ -18,7 +18,7 @@ import com.organization.project.type.AuthorityName;
 
 @Entity
 @Table(name="t_authority")
-public class Authority {
+public class Authority{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

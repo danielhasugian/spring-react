@@ -13,9 +13,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.organization.project.common.CommonDomain;
+
 @Entity
 @Table(name = "t_user")
-public class User {
+public class User extends CommonDomain{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
