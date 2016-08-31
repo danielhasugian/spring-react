@@ -4,29 +4,29 @@ import java.util.Date;
 
 public class GenericResponse {
 
-	private Date date;
+	private Date timestamp;
 	private Boolean failed;
 	private String message;
 	private Object result;
 	private String path;
-	
+		
 	public GenericResponse() {
 	}
 	
-	public GenericResponse(Date date, Boolean failed, String message, Object result, String path) {
-		this.date = date;
+	public GenericResponse(Date timestamp, Boolean failed, String message, Object result, String path) {
+		this.timestamp = timestamp;
 		this.failed = failed;
 		this.message = message;
 		this.result = result;
 		this.path = path;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getTimestamp() {
+		return timestamp;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public Boolean getFailed() {

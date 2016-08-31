@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.organization.project.common.CommonController;
 import com.organization.project.domain.postgresql.User;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController {
+public class UserController extends CommonController {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -25,7 +26,7 @@ public class UserController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public GenericResponse getUser(HttpServletRequest request) {
-		return sendResponse(Boolean.FALSE, null, userRepository.findAll(), request);
+		return sendResponseSuccess(userRepository.findAll(), request);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/save")
@@ -36,9 +37,9 @@ public class UserController extends BaseController {
 		user.setDivision((String) jsonUser.get("division"));
 		try {
 			userRepository.save(user);
-			return sendResponse(Boolean.FALSE, "Save success", userRepository.findAll(), request);
+			return sendResponseSuccess(userRepository.findAll(), request);
 		} catch (Exception e) {
-			return sendResponse(Boolean.TRUE, e.getMessage(), null, request);
+			return sendResponseSuccess(null, request);
 		}
 	}
 

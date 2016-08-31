@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.organization.project.common.CommonController;
 import com.organization.project.domain.postgresql.User;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.repository.UserRepository;
@@ -22,7 +23,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping("/login")
-public class LoginController extends BaseController {
+public class LoginController extends CommonController {
 
 	final static Logger LOGGER = Logger.getLogger(LoginController.class);
 	@Autowired
@@ -42,13 +43,13 @@ public class LoginController extends BaseController {
 						.signWith(SignatureAlgorithm.HS256, "secretkey")
 						.compact();
 				
-				return sendResponse(Boolean.FALSE, "Success Generate", token, request);
+				return sendResponseSuccess(token, request);
 			}else{
-				return sendResponse(Boolean.FALSE, "Invalid Password", null, request);
+				return sendResponseSuccess(null, request);
 			}
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
-			return sendResponse(Boolean.FALSE, "Failed Generate", null, request);
+			return sendResponseSuccess(null, request);
 		}
 	}
 
