@@ -1,3 +1,9 @@
+#server config 
+#config context path to "/" by setting an empty string
+server:
+  port: 200
+  context-path: 
+
 #datasource config, messagesource config
 spring:
   datasource:
@@ -18,10 +24,6 @@ spring:
 security:
   user:
     password: password
-
-#server config
-server:
-  port: 200
 
 #logging config
 logging:

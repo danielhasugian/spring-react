@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.organization.project.common.CommonController;
 import com.organization.project.model.GenericResponse;
 import com.organization.project.model.Greeting;
+import com.organization.project.util.JsonUtil;
 
 @RestController
 @RequestMapping("/greeting")
@@ -56,8 +57,8 @@ public class GreetingController extends CommonController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/example4")
-	public GenericResponse example4(@RequestBody HashMap<String, ?> dataMap, HttpServletRequest request) {
-		List<Greeting> greetings = (List<Greeting>) getDataFromJson((String)dataMap.get("result"), Greeting.class);
+	public GenericResponse example4(@RequestBody String jsonString, HttpServletRequest request) {
+		List<Greeting> greetings = (List<Greeting>) JsonUtil.getDataFromJson(jsonString);
 		
 		return sendResponseSuccess(greetings, request.getRequestURI());
 	}

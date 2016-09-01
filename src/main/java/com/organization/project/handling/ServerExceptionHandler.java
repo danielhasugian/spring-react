@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -26,7 +27,7 @@ public class ServerExceptionHandler {
 	 * @throws IOException
 	 */
 	
-	@ExceptionHandler({IllegalArgumentException.class, NullPointerException.class, NumberFormatException.class})
+	@ExceptionHandler({IllegalArgumentException.class, NullPointerException.class, NumberFormatException.class, JSONException.class})
 	public void handleBaseException(HttpServletResponse response) throws IOException {
 		response.sendError(HttpStatus.BAD_REQUEST.value());
 	}

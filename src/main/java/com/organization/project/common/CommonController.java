@@ -1,23 +1,16 @@
 package com.organization.project.common;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.organization.project.model.GenericResponse;
+
 
 @PropertySource("classpath:config.properties")
 public class CommonController {
@@ -29,8 +22,6 @@ public class CommonController {
 
 	@Autowired
 	private Environment environment;
-
-	private Gson gson;
 
 	protected GenericResponse genericResponse;
 
@@ -74,37 +65,6 @@ public class CommonController {
 
 	private GenericResponse sendResponse(Boolean failed, String message, Object result, String path) {
 		return new GenericResponse(new Date(), failed, message, result, path);
-	}
-
-	protected <T> Object getDataFromJson(String jString, Class<?> clazz) {
-		Object result = null;
-		try {
-			Object value = (new JSONTokener(jString)).nextValue();
-			if (value instanceof String || value instanceof Boolean || value instanceof Integer) {
-				return value;
-			} else if (value instanceof JsonObject){
-				result = convertJsonToObject(jString, clazz);
-			} else if (value instanceof JsonArray){
-				result = getListFromJsonArray((JSONArray)value, clazz);
-			}
-		} catch (Exception e) {
-			LOGGER.info("error converting fromJson to " + clazz.getName(), e);
-			throw new IllegalArgumentException(e.getLocalizedMessage());
-		}
-		return result;
-	}
-
-	private List<Class<?>> getListFromJsonArray(JSONArray jArray, Class<?> clazz) throws JSONException {
-		List<Class<?>> returnList = new ArrayList<Class<?>>();
-		for (int i = 0; i < jArray.length(); i++) {
-			returnList.add((Class<?>) convertJsonToObject(jArray.get(i).toString(), clazz));
-		}
-		return returnList;
-	}
-	
-	private Object convertJsonToObject(String jString, Class<?> clazz){
-		gson = new Gson();
-		return gson.fromJson(jString, clazz);
 	}
 
 }
