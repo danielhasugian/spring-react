@@ -1,6 +1,7 @@
 package com.organization.project.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,5 +52,13 @@ public class GreetingController extends CommonController {
 	@RequestMapping(value = "/example3")
 	public GenericResponse example3(@Valid @RequestBody Greeting greeting, HttpServletRequest request) {
 		return sendResponseSuccess(greeting, request.getRequestURI());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/example4")
+	public GenericResponse example4(@RequestBody HashMap<String, ?> dataMap, HttpServletRequest request) {
+		List<Greeting> greetings = (List<Greeting>) getDataFromJson((String)dataMap.get("result"), Greeting.class);
+		
+		return sendResponseSuccess(greetings, request.getRequestURI());
 	}
 }

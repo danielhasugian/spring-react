@@ -1,18 +1,28 @@
-#config datasource
+#datasource config, messagesource config
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/db_micropayment
-    username : postgres
-    password : root
-    driverClassName : org.postgresql.Driver
-  jpa : 
+    username: postgres
+    password: root
+    driverClassName: org.postgresql.Driver
+  jpa: 
     hibernate:
       ddl-auto: update
+  messages:
+    basename: i18n/messages
+    cache-seconds: 3600
+    encoding: UTF-8
+    fallback-to-system-locale: true
+
+#security config
+security:
+  user:
+    password: password
 
 #server config
 server:
-  port : 100
+  port: 200
 
-#log-back
+#logging config
 logging:
-  config : classpath:config/logback.xml
+  config: classpath:config/logback.xml

@@ -2,6 +2,10 @@ package com.organization.project.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class GenericResponse {
 
 	private Date timestamp;
@@ -9,10 +13,10 @@ public class GenericResponse {
 	private String message;
 	private Object result;
 	private String path;
-		
+
 	public GenericResponse() {
 	}
-	
+
 	public GenericResponse(Date timestamp, Boolean failed, String message, Object result, String path) {
 		this.timestamp = timestamp;
 		this.failed = failed;
@@ -32,26 +36,33 @@ public class GenericResponse {
 	public Boolean getFailed() {
 		return failed;
 	}
+
 	public void setFailed(Boolean failed) {
 		this.failed = failed;
 	}
+
 	public String getMessage() {
 		return message;
 	}
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
 	public Object getResult() {
 		return result;
 	}
+
 	public void setResult(Object result) {
 		this.result = result;
 	}
+
 	public String getPath() {
 		return path;
 	}
+
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 }
